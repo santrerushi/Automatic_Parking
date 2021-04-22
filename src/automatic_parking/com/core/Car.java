@@ -1,6 +1,7 @@
-package automatic_parking.com.car;
+package automatic_parking.com.core;
 
 public class Car {
+
 	String registrationNumber;
 	String colorOfCar;
 	
@@ -26,6 +27,4 @@ public class Car {
 	public String toString() {
 		return "\nRegistrationNumber=" + registrationNumber + ", \nColor=" + colorOfCar ;
 	}
-	
-
 }

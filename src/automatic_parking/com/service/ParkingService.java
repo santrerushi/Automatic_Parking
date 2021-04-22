@@ -1,9 +1,9 @@
-package automatic_parking.com.parkingservice;
+package automatic_parking.com.service;
 
 import java.util.Scanner;
 
-import automatic_parking.com.car.Car;
-import automatic_parking.com.slot.Slot;
+import automatic_parking.com.core.Car;
+import automatic_parking.com.core.Slot;
 
 public class ParkingService {
 	

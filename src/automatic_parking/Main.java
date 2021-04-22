@@ -1,7 +1,7 @@
 package automatic_parking;
 
 import java.util.Scanner;
-import automatic_parking.com.parkingservice.ParkingService;
+import automatic_parking.com.service.ParkingService;
 
 
 public class Main {
