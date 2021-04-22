@@ -1,8 +1,8 @@
 package automatic_parking.com.car;
 
 public class Car {
-	String RegistrationNumber;
-	String Color;
+	String registration_Number;
+	String color_of_car;
 	
 	public Car() {
 		super();
@@ -11,21 +11,21 @@ public class Car {
 	public Car(String string, String string2) {
 		// TODO Auto-generated constructor stub
 	}
-	public String getRegistrationNumber() {
-		return RegistrationNumber;
+	public String getregistration_Number() {
+		return registration_Number;
 	}
-	public void setRegistrationNumber(String registration_number) {
-		RegistrationNumber = registration_number;
+	public void setregistration_Number(String registration_number) {
+		registration_Number = registration_number;
 	}
-	public String getColor() {
-		return Color;
+	public String getcolor_of_car() {
+		return color_of_car;
 	}
-	public void setColor(String color) {
-		Color = color;
+	public void setcolor_of_car(String color) {
+		color_of_car = color;
 	}
 	@Override
 	public String toString() {
-		return "\nRegistration Number=" + RegistrationNumber + "\nColor=" + Color ;
+		return "\nRegistration Number=" + registration_Number + "\nColor=" + color_of_car ;
 	}
 	
 
