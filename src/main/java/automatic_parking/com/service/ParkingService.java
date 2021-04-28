@@ -11,6 +11,7 @@ public class ParkingService {
 	Slot slot=new Slot(5,20);
 	
 	public void entry() {
+
 		Car newcar = new Car();
 		
 		System.out.println("Enter Car Registration Number : ");
