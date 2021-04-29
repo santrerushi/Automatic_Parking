@@ -1,15 +1,9 @@
 package automatic_parking.com.core;
 
 public class Car {
-
 	String registrationNumber;
 	String colorOfCar;
-	
 	public Car() {
-		// TODO Auto-generated constructor stub
-	}
-	public Car(String string, String string2) {
-		// TODO Auto-generated constructor stub
 	}
 	public String getRegistrationNumber() {
 		return registrationNumber;
