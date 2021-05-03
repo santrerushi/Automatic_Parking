@@ -1,5 +1,9 @@
 package automatic_parking.com.utility;
 
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,6 +14,8 @@ public class AppConfig {
     public static Connection connection;
     public static Statement statement;
     public static Properties properties;
+    private static MongoDatabase database;
+    private static MongoCollection<Document> collection;
     private static String client;
 
     public void fileConfig() {
@@ -46,6 +52,22 @@ public class AppConfig {
         this.client = client;
     }
 
+    public MongoDatabase getDatabase() {
+        return database;
+    }
+
+    public void setDatabase(MongoDatabase database) {
+        this.database = database;
+    }
+
+    public MongoCollection<Document> getDocument() {
+        return collection;
+    }
+
+    public void setDocument(MongoCollection<Document> collection) {
+        AppConfig.collection = collection;
+    }
+
     public void mySqlConnection(){
             try{
                 Class.forName(properties.getProperty("DRIVER"));
@@ -54,6 +76,16 @@ public class AppConfig {
                 System.out.println("Connected with MySQL Database.");
             }catch (Exception e){
                 e.printStackTrace();
-        }
+            }
     }
+
+    public void mongoConnection(){
+        MongoClient mongo = new MongoClient("localhost",27017);
+        MongoDatabase database=mongo.getDatabase("mongo");
+        this.setDatabase(database);
+        MongoCollection<Document> collection=database.getCollection("parking_system");
+        this.setDocument(collection);
+        System.out.println("Connected with MongoDB Database.");
+    }
+
 }
