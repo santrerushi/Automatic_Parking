@@ -2,6 +2,7 @@ package automatic_parking;
 
 import automatic_parking.com.client.BaseClient;
 import automatic_parking.com.client.InMemory;
+import automatic_parking.com.client.MongoClient;
 import automatic_parking.com.client.Mysqlclient;
 import automatic_parking.com.utility.AppConfig;
 import java.util.Scanner;
@@ -19,6 +20,13 @@ public class Main {
 	       baseClient=new Mysqlclient();
 		   applicationConfig.mySqlConnection();
 	    }
+	    else if(clientName.equalsIgnoreCase("mongodb")){
+			System.out.println("Client Name - "+clientName);
+			baseClient=new MongoClient();
+			applicationConfig.mongoConnection();
+			MongoClient mongoClient=(MongoClient) baseClient;
+			mongoClient.createCollection();
+		}
 
 		while (true) {
 			System.out.println("\n 1.Entry \n 2.Exit \n 3.getRegistrationNumberByColor \n 4.getSlotNumberByRegistrationNumber \n 5.getSlotNumberByColor \n 6.getListOfSlot \n \n Enter Your Choice :");
