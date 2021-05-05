@@ -1,9 +1,11 @@
-package automatic_parking.com.utility;
+package com.automatic_parking.utility;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import redis.clients.jedis.Jedis;
+
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,6 +18,7 @@ public class AppConfig {
     public static Properties properties;
     private static MongoDatabase database;
     private static MongoCollection<Document> collection;
+    public Jedis key;
     private static String client;
 
     public void fileConfig() {
@@ -23,7 +26,7 @@ public class AppConfig {
             properties = new Properties();
             properties.load(new FileReader("src/main/resources/config.properties"));
             this.client = properties.getProperty("Client");
-        } catch (Exception e) {
+        }catch (Exception e) {
                  e.printStackTrace();
         }
 }
@@ -68,6 +71,14 @@ public class AppConfig {
         AppConfig.collection = collection;
     }
 
+    public Jedis getKey(Jedis jedis) {
+        return key;
+    }
+
+    public void setKey(Jedis key) {
+        this.key = key;
+    }
+
     public void mySqlConnection(){
             try{
                 Class.forName(properties.getProperty("DRIVER"));
@@ -80,12 +91,23 @@ public class AppConfig {
     }
 
     public void mongoConnection(){
-        MongoClient mongo = new MongoClient("localhost",27017);
-        MongoDatabase database=mongo.getDatabase("mongo");
-        this.setDatabase(database);
-        MongoCollection<Document> collection=database.getCollection("parking_system");
-        this.setDocument(collection);
-        System.out.println("Connected with MongoDB Database.");
+            MongoClient mongo = new MongoClient(properties.getProperty("LOCALHOST"),Integer.parseInt(properties.getProperty("PORT")));
+            MongoDatabase database = mongo.getDatabase("mongo");
+            this.setDatabase(database);
+            MongoCollection<Document> collection = database.getCollection("parking_system");
+            this.setDocument(collection);
+            System.out.println("Connected with MongoDB Database.");
+    }
+
+    public Jedis redisConnection(){
+        Jedis jedis=new Jedis(properties.getProperty("LOCALHOST"),Integer.parseInt(properties.getProperty("PORT")));
+
+//        jedis.set("Registration", "MH12");
+//        String value=jedis.get("Registration");
+//        System.out.println(value);
+
+        return jedis;
+
     }
 
 }

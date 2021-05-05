@@ -1,4 +1,4 @@
-package automatic_parking.com.core;
+package com.automatic_parking.core;
 
 public class Car {
 	String registrationNumber;

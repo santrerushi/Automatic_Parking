@@ -1,6 +1,6 @@
-package automatic_parking.com.client;
+package com.automatic_parking.client;
 
-import automatic_parking.com.utility.AppConfig;
+import com.automatic_parking.utility.AppConfig;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;

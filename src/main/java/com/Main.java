@@ -1,10 +1,7 @@
-package automatic_parking;
+package com;
 
-import automatic_parking.com.client.BaseClient;
-import automatic_parking.com.client.InMemory;
-import automatic_parking.com.client.MongoClient;
-import automatic_parking.com.client.Mysqlclient;
-import automatic_parking.com.utility.AppConfig;
+import com.automatic_parking.client.*;
+import com.automatic_parking.utility.AppConfig;
 import java.util.Scanner;
 
 public class Main {
@@ -26,6 +23,13 @@ public class Main {
 			applicationConfig.mongoConnection();
 			MongoClient mongoClient=(MongoClient) baseClient;
 			mongoClient.createCollection();
+		}
+	    else if (clientName.equalsIgnoreCase("redis")){
+			System.out.println("Client Name - "+clientName);
+			baseClient=new RedisClient();
+			applicationConfig.redisConnection();
+//			RedisClient redisClient= (RedisClient) baseClient;
+//			redisClient.createKey();
 		}
 
 		while (true) {

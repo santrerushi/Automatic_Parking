@@ -1,7 +1,7 @@
-package automatic_parking.com.client;
+package com.automatic_parking.client;
 
-import automatic_parking.com.core.Car;
-import automatic_parking.com.core.Slot;
+import com.automatic_parking.core.Car;
+import com.automatic_parking.core.Slot;
 
 public class InMemory extends BaseClient{
     Slot slot=new Slot(5,20);
