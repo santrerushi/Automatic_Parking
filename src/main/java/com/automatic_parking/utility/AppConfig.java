@@ -18,7 +18,6 @@ public class AppConfig {
     public static Properties properties;
     private static MongoDatabase database;
     private static MongoCollection<Document> collection;
-    public Jedis key;
     private static String client;
 
     public void fileConfig() {
@@ -71,14 +70,6 @@ public class AppConfig {
         AppConfig.collection = collection;
     }
 
-    public Jedis getKey(Jedis jedis) {
-        return key;
-    }
-
-    public void setKey(Jedis key) {
-        this.key = key;
-    }
-
     public void mySqlConnection(){
             try{
                 Class.forName(properties.getProperty("DRIVER"));
@@ -91,7 +82,7 @@ public class AppConfig {
     }
 
     public void mongoConnection(){
-            MongoClient mongo = new MongoClient(properties.getProperty("LOCALHOST"),Integer.parseInt(properties.getProperty("PORT")));
+            MongoClient mongo = new MongoClient(properties.getProperty("MONGO_HOST"),Integer.parseInt(properties.getProperty("PORT")));
             MongoDatabase database = mongo.getDatabase("mongo");
             this.setDatabase(database);
             MongoCollection<Document> collection = database.getCollection("parking_system");
@@ -100,14 +91,7 @@ public class AppConfig {
     }
 
     public Jedis redisConnection(){
-        Jedis jedis=new Jedis(properties.getProperty("LOCALHOST"),Integer.parseInt(properties.getProperty("PORT")));
-
-//        jedis.set("Registration", "MH12");
-//        String value=jedis.get("Registration");
-//        System.out.println(value);
-
+        Jedis jedis=new Jedis(properties.getProperty("REDIS_HOST"),Integer.parseInt(properties.getProperty("PORT_REDIS")));
         return jedis;
-
     }
-
 }

@@ -28,8 +28,8 @@ public class Main {
 			System.out.println("Client Name - "+clientName);
 			baseClient=new RedisClient();
 			applicationConfig.redisConnection();
-//			RedisClient redisClient= (RedisClient) baseClient;
-//			redisClient.createKey();
+			RedisClient redisClient= (RedisClient) baseClient;
+			redisClient.createHash();
 		}
 
 		while (true) {
