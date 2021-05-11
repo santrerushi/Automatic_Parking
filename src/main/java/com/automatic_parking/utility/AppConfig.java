@@ -3,7 +3,12 @@ package com.automatic_parking.utility;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+
+import org.apache.http.HttpHost;
 import org.bson.Document;
+
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestHighLevelClient;
 import redis.clients.jedis.Jedis;
 
 import java.io.FileReader;
@@ -19,6 +24,7 @@ public class AppConfig {
     private static MongoDatabase database;
     private static MongoCollection<Document> collection;
     private static String client;
+    public static RestHighLevelClient elasticDatabase=null;
 
     public void fileConfig() {
         try {
@@ -70,6 +76,14 @@ public class AppConfig {
         AppConfig.collection = collection;
     }
 
+    public RestHighLevelClient getElasticDatabase() {
+        return elasticDatabase;
+    }
+
+    public void setElasticDatabase(RestHighLevelClient elasticDatabase) {
+        AppConfig.elasticDatabase = elasticDatabase;
+    }
+
     public void mySqlConnection(){
             try{
                 Class.forName(properties.getProperty("DRIVER"));
@@ -93,5 +107,10 @@ public class AppConfig {
     public Jedis redisConnection(){
         Jedis jedis=new Jedis(properties.getProperty("REDIS_HOST"),Integer.parseInt(properties.getProperty("PORT_REDIS")));
         return jedis;
+    }
+
+    public void elasticSearchConnection(){
+         elasticDatabase = new RestHighLevelClient(RestClient.builder(new HttpHost(properties.getProperty("ELASTICSEARCH_HOST"),Integer.parseInt(properties.getProperty("ELASTICSEARCH_PORT")),properties.getProperty("SCHEME"))));
+         this.setElasticDatabase(elasticDatabase);
     }
 }

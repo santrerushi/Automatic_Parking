@@ -31,6 +31,13 @@ public class Main {
 			RedisClient redisClient= (RedisClient) baseClient;
 			redisClient.createHash();
 		}
+	    else if (clientName.equalsIgnoreCase("elasticsearch")){
+			System.out.println("Client Name : "+clientName);
+			applicationConfig.elasticSearchConnection();
+			baseClient=new ElasticSearchClient();
+			ElasticSearchClient elasticClient= (ElasticSearchClient) baseClient;
+			elasticClient.createIndex();
+		}
 
 		while (true) {
 			System.out.println("\n 1.Entry \n 2.Exit \n 3.getRegistrationNumberByColor \n 4.getSlotNumberByRegistrationNumber \n 5.getSlotNumberByColor \n 6.getListOfSlot \n \n Enter Your Choice :");
