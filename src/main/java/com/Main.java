@@ -7,15 +7,15 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		AppConfig applicationConfig=new AppConfig();
-	    applicationConfig.fileConfig();
-	    String clientName= applicationConfig.getClient();
+	    	applicationConfig.fileConfig();
+	   	String clientName= applicationConfig.getClient();
 		BaseClient baseClient=new InMemory();
 
 	    if(clientName.equalsIgnoreCase("mysql"))
 	    {
-	       System.out.println("Client Name - "+clientName);
-	       baseClient=new Mysqlclient();
-		   applicationConfig.mySqlConnection();
+	        System.out.println("Client Name - "+clientName);
+	        baseClient=new Mysqlclient();
+		applicationConfig.mySqlConnection();
 	    }
 	    else if(clientName.equalsIgnoreCase("mongodb")){
 			System.out.println("Client Name - "+clientName);
